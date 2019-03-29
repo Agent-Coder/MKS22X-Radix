@@ -1,4 +1,4 @@
-public class MyLinkedList{
+public class MyLinkedList<E>{
  private int size;
  private Node start,end;
  public MyLinkedList(){
@@ -12,7 +12,7 @@ public class MyLinkedList{
  public E removeFront(){
    return this.remove(0);
  }
- public void extend(MyLinkedList other){
+ public void extend(MyLinkedList<E> other){
     this.end.setNext(other.start);
     other.start.setPrev(this.end);
     this.end=other.end;
@@ -24,7 +24,7 @@ public class MyLinkedList{
       //The size of other is reduced to 0
       //The size of this is now the combined sizes of both original lists
   }
-  public boolean add(int value){
+  public boolean add(E value){
     Node x=new Node(null,value,null);
     if (this.size==0){
       this.start=x;
@@ -60,7 +60,7 @@ public class MyLinkedList{
   //else make node and kepp adding the node and then doing next while subtracting from count
   //count represents Size
   //loop out before last element to add bracket (no commas)
-  public Integer get(int index){
+  public E get(int index){
     if(index < 0 || index > this.size){
       throw new IndexOutOfBoundsException();
     }
@@ -77,7 +77,7 @@ public class MyLinkedList{
     return x;
   }
   //loop through linked list using int i to the index and then return the node
-  public Integer set(int index, Integer value){
+  public E set(int index, E value){
     if(index < 0 || index > this.size){
       throw new IndexOutOfBoundsException();
     }
@@ -85,7 +85,7 @@ public class MyLinkedList{
     return value;
   }
   //throw exception and get node at the index to set it as the value given and then return value
-  public boolean contains(Integer value){
+  public boolean contains(E value){
     if (this.indexOf(value)!=-1){
       return true;
     }
@@ -94,7 +94,7 @@ public class MyLinkedList{
     }
   }
   //see if u can indexOf the value so if it returns doesnt -1 its true, else its false
-  public int indexOf(Integer value){
+  public int indexOf(E value){
     int x=0;
     Node n=this.start;
     while (x<this.size){
@@ -109,7 +109,7 @@ public class MyLinkedList{
   //loop through starting from nth node and while x is less than size
   //check the data to see if they are equal and return x if it is
   //return -1 if it loops out
-  public void add(int index,Integer value){
+  public void add(int index,E value){
     if(index < 0 || index > this.size()){
       throw new IndexOutOfBoundsException();
     }
@@ -134,12 +134,12 @@ public class MyLinkedList{
   //else set the pre of the current node as the new Node
   //and set next of the pre node as the new node
   //set current nodes next and pre as the index and index-1
-  public Integer remove(int index){
+  public E remove(int index){
     if(index < 0 || index > this.size){
       throw new IndexOutOfBoundsException();
     }
     Node n=this.getNthNode(index);
-    Integer r=n.getdata();
+    E r=n.getdata();
     if (index==0){
       this.start=n.next();
       this.start.setPrev(null);
@@ -161,7 +161,7 @@ public class MyLinkedList{
   //if it is the final node, then set the previous node's next as null and set the end of list as that node
   //else, set the pre of the next node as the pre node
   //and then the next of the prenode ase the next node
-  public boolean removeVal(Integer value){
+  public boolean removeVal(E value){
     if (this.indexOf(value)!=-1){
       this.remove(this.indexOf(value));
       return true;
@@ -172,19 +172,19 @@ public class MyLinkedList{
 //finds index of this value and if it is not -1, then remove it,return true
 //else return false ;
 class Node{
- private Integer data;
+ private E data;
  private Node next,prev;
- public Node(Node before,Integer datas,Node after){
+ public Node(Node before,E datas,Node after){
    data=datas;
    next=after;
    prev=before;
  }
- public Node(Integer datas){
+ public Node(E datas){
    data=datas;
    next=null;
    prev=null;
  }
- public Integer getdata(){
+ public E getdata(){
    return data;
  }
  public Node next(){
@@ -193,7 +193,7 @@ class Node{
  public Node prev(){
    return prev;
  }
- public void setData(Integer num){
+ public void setData(E num){
    data=num;
  }
  public void setNext(Node other){
