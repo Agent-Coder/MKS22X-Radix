@@ -1,6 +1,6 @@
 public class MyLinkedList<E>{
  private int size;
- private Node<E> start,end;
+ private Node start,end;
  public MyLinkedList(){
   size=0;
  }
@@ -67,7 +67,7 @@ public class MyLinkedList<E>{
     return this.getNthNode(index).getdata();
   }
   //return the data at the nth node using index
-  private Node<E> getNthNode(int Index){
+  private Node getNthNode(int Index){
     Node x=this.start;
     int i=0;
     while (Index!=i){
@@ -138,7 +138,7 @@ public class MyLinkedList<E>{
     if(index < 0 || index > this.size){
       throw new IndexOutOfBoundsException();
     }
-    Node<E> n=this.getNthNode(index);
+    Node n=this.getNthNode(index);
     E r=n.getdata();
     if (index==0){
       this.start=n.next();
@@ -149,8 +149,8 @@ public class MyLinkedList<E>{
       this.end.setNext(null);
     }
     else{
-      Node<E> x=n.prev();
-      Node<E> y=n.next();
+      Node x=n.prev();
+      Node y=n.next();
       y.setPrev(x);
       x.setNext(y);
     }
@@ -168,10 +168,10 @@ public class MyLinkedList<E>{
     }
     return false;
   }
-  class Node<E>{
+  class Node{
    private E data;
-   private Node<E> next,prev;
-   public Node(Node<E> before,E datas,Node<E> after){
+   private Node next,prev;
+   public Node(Node before,E datas,Node after){
      data=datas;
      next=after;
      prev=before;
@@ -196,7 +196,7 @@ public class MyLinkedList<E>{
    public void setNext(Node other){
      next=other;
    }
-   public void setPrev(Node<E> other){
+   public void setPrev(Node other){
      prev=other;
    }
    public String toString(){
@@ -207,39 +207,3 @@ public class MyLinkedList<E>{
 }
 //finds index of this value and if it is not -1, then remove it,return true
 //else return false ;
-class Node<E>{
- private E data;
- private Node<E> next,prev;
- public Node(Node<E> before,E datas,Node<E> after){
-   data=datas;
-   next=after;
-   prev=before;
- }
- public Node(E datas){
-   data=datas;
-   next=null;
-   prev=null;
- }
- public E getdata(){
-   return data;
- }
- public Node next(){
-   return next;
- }
- public Node prev(){
-   return prev;
- }
- public void setData(E num){
-   data=num;
- }
- public void setNext(Node other){
-   next=other;
- }
- public void setPrev(Node<E> other){
-   prev=other;
- }
- public String toString(){
-   String s=""+this.data;
-   return s;
- }
-}
