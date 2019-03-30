@@ -1,6 +1,6 @@
 public class MyLinkedList<E>{
  private int size;
- private Node start,end;
+ private Node<E> start,end;
  public MyLinkedList(){
   size=0;
  }
@@ -67,7 +67,7 @@ public class MyLinkedList<E>{
     return this.getNthNode(index).getdata();
   }
   //return the data at the nth node using index
-  private Node getNthNode(int Index){
+  private Node<E> getNthNode(int Index){
     Node x=this.start;
     int i=0;
     while (Index!=i){
@@ -138,7 +138,7 @@ public class MyLinkedList<E>{
     if(index < 0 || index > this.size){
       throw new IndexOutOfBoundsException();
     }
-    Node n=this.getNthNode(index);
+    Node<E> n=this.getNthNode(index);
     E r=n.getdata();
     if (index==0){
       this.start=n.next();
@@ -149,8 +149,8 @@ public class MyLinkedList<E>{
       this.end.setNext(null);
     }
     else{
-      Node x=n.prev();
-      Node y=n.next();
+      Node<E> x=n.prev();
+      Node<E> y=n.next();
       y.setPrev(x);
       x.setNext(y);
     }
@@ -168,13 +168,49 @@ public class MyLinkedList<E>{
     }
     return false;
   }
+  class Node<E>{
+   private E data;
+   private Node<E> next,prev;
+   public Node(Node<E> before,E datas,Node<E> after){
+     data=datas;
+     next=after;
+     prev=before;
+   }
+   public Node(E datas){
+     data=datas;
+     next=null;
+     prev=null;
+   }
+   public E getdata(){
+     return data;
+   }
+   public Node next(){
+     return next;
+   }
+   public Node prev(){
+     return prev;
+   }
+   public void setData(E num){
+     data=num;
+   }
+   public void setNext(Node other){
+     next=other;
+   }
+   public void setPrev(Node<E> other){
+     prev=other;
+   }
+   public String toString(){
+     String s=""+this.data;
+     return s;
+   }
+  }
 }
 //finds index of this value and if it is not -1, then remove it,return true
 //else return false ;
-class Node{
+class Node<E>{
  private E data;
- private Node next,prev;
- public Node(Node before,E datas,Node after){
+ private Node<E> next,prev;
+ public Node(Node<E> before,E datas,Node<E> after){
    data=datas;
    next=after;
    prev=before;
@@ -199,7 +235,7 @@ class Node{
  public void setNext(Node other){
    next=other;
  }
- public void setPrev(Node other){
+ public void setPrev(Node<E> other){
    prev=other;
  }
  public String toString(){
