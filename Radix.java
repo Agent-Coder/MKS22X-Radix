@@ -7,9 +7,14 @@ public class Radix{
       for (int i=0;i<data.length;i++) {
         bucket[data[i]%(int)(Math.pow(10.0,1.0*counter))].add(data[i]);
       }
+      int datacount=0;
       for (int i=0;i<bucket.length;i++ ) {
-
+        for (int j=0;j<bucket[i].size();j++ ) {
+          data[datacount]=bucket[i].get(j);
+          datacount++;
+        }
       }
+      counter++;
     }
   }
   public static void findMax(int[] data){
