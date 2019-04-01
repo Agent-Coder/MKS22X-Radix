@@ -1,6 +1,8 @@
 public class Radix{
+
   public static void radixsort(int[]data){
-    MyLinkedList<Integer>[] bucket=new MyLinkedList<>()[10];
+    @SupressWarnings("unchecked")
+    MyLinkedList<Integer>[] bucket=new MyLinkedList[10];
     int max=findMax(data);
     int counter=0;
     while (counter<max){
@@ -17,7 +19,7 @@ public class Radix{
       counter++;
     }
   }
-  public static void findMax(int[] data){
+  public static int findMax(int[] data){
     int max=0;
     String s="";
     for (int i=0;i<data.length;i++) {
