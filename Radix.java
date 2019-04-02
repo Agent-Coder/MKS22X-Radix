@@ -17,11 +17,14 @@ public class Radix{
           bucket[temp+9].add(data[i]);
       }
       int datacount=0;
+      MyLinkedList<Integer> all= new MyLinkedList<Integer>();
       for (int i=0;i<bucket.length;i++) {
-        for (int j=0;j<bucket[i].size();j++ ) {
-            data[datacount]=bucket[i].get(j);
-          datacount++;
-        }
+          //System.out.println(bucket[i].size());
+          all.extend(bucket[i]);
+          //System.out.println(all);
+      }
+      for (int i=0;i<all.size();i++ ) {
+        data[i]=all.get(i);
       }
       counter++;
     }

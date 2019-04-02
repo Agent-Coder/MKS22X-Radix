@@ -13,6 +13,15 @@ public class MyLinkedList<E>{
    return this.remove(0);
  }
  public void extend(MyLinkedList<E> other){
+   if(this.size==0){
+     start=other.start;
+     end=other.end;
+     this.size=other.size();
+     other.size=0;
+     other.start=null;
+     other.end=null;
+   }
+   if(this.size!=0&&other.size!=0){
     this.end.setNext(other.start);
     other.start.setPrev(this.end);
     this.end=other.end;
@@ -20,6 +29,7 @@ public class MyLinkedList<E>{
     other.size=0;
     other.start=null;
     other.end=null;
+  }
       //in O(1) runtime, move the elements from other onto the end of this
       //The size of other is reduced to 0
       //The size of this is now the combined sizes of both original lists
