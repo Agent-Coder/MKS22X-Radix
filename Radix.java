@@ -31,6 +31,9 @@ public class Radix{
     String s="";
     for (int i=0;i<data.length;i++) {
       s+=data[i];
+      if(data[i]<0){
+        s=s.substring(0,s.length()-1);
+      }
       if(s.length()>max){
         max=s.length();
       }
@@ -39,8 +42,8 @@ public class Radix{
     return max;
   }
 public static void main(String[] args) {
-  int[] x={2,3,5,6,7,8,12,14};
-  radixsort(x);
-  System.out.println(Arrays.toString(x));
+  int[] x={-2,3,5,6,-17,-198,12,14};
+  System.out.println(findMax(x));
+  //System.out.println(Arrays.toString(x));
 }
 }
