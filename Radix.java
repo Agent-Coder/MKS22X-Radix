@@ -8,28 +8,24 @@ public class Radix{
     MyLinkedList<Integer>[] bucket=new MyLinkedList[19];
     int max=findMax(data);
     int counter=0;
+    for (int i=0;i<bucket.length ;i++ ) {
+      bucket[i]=new MyLinkedList<Integer>();
+    }
+    for (int i=0;i<data.length;i++) {
+      int temp=(data[i]/(int)(Math.pow(10,counter)))%10;
+        bucket[temp+9].add(data[i]);
+    }
+    MyLinkedList<Integer> all= new MyLinkedList<Integer>();
     while (counter<max){
-      for (int i=0;i<bucket.length ;i++ ) {
-        bucket[i]=new MyLinkedList<Integer>();
-      }
-      for (int i=0;i<data.length;i++) {
-        int temp=(data[i]/(int)(Math.pow(10,counter)))%10;
-          bucket[temp+9].add(data[i]);
-      }
-      int datacount=0;
-      for (int i=0;i<bucket.length;i++) {
-        for (int j=0;j<bucket[i].size() ;j++ ) {
-          data[datacount]=bucket[i].get(j);
-          datacount++;
+      if(counter!=0){
+        ///
+          }
         }
       }
-      /*MyLinkedList<Integer> all= new MyLinkedList<Integer>();
+      all= new MyLinkedList<Integer>();
       for (int i=0;i<bucket.length;i++) {
         all.extend(bucket[i]);
       }
-      for (int i=0;i<all.size();i++ ) {
-        data[i]=all.get(i);
-      }*/
       counter++;
     }
   }
