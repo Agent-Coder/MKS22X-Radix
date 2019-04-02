@@ -1,18 +1,25 @@
+import java.util.*;
 public class Radix{
-
+  @SuppressWarnings("unchecked")
   public static void radixsort(int[]data){
-    @SupressWarnings("unchecked")
+    if (data.length==0){
+      return;
+    }
     MyLinkedList<Integer>[] bucket=new MyLinkedList[10];
     int max=findMax(data);
     int counter=0;
     while (counter<max){
+      for (int i=0;i<bucket.length ;i++ ) {
+        bucket[i]=new MyLinkedList<Integer>();
+      }
       for (int i=0;i<data.length;i++) {
-        bucket[data[i]%(int)(Math.pow(10.0,1.0*counter))].add(data[i]);
+        int temp=(data[i]/(int)(Math.pow(10,counter)))%10;
+        bucket[temp].add(data[i]);
       }
       int datacount=0;
-      for (int i=0;i<bucket.length;i++ ) {
+      for (int i=0;i<bucket.length;i++) {
         for (int j=0;j<bucket[i].size();j++ ) {
-          data[datacount]=bucket[i].get(j);
+            data[datacount]=bucket[i].get(j);
           datacount++;
         }
       }
@@ -31,5 +38,9 @@ public class Radix{
     }
     return max;
   }
-
+public static void main(String[] args) {
+  int[] x={2,3,5,6,7,8,12,14};
+  radixsort(x);
+  System.out.println(Arrays.toString(x));
+}
 }
