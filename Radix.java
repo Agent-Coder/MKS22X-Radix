@@ -5,7 +5,7 @@ public class Radix{
     if (data.length==0){
       return;
     }
-    MyLinkedList<Integer>[] bucket=new MyLinkedList[10];
+    MyLinkedList<Integer>[] bucket=new MyLinkedList[19];
     int max=findMax(data);
     int counter=0;
     while (counter<max){
@@ -14,7 +14,7 @@ public class Radix{
       }
       for (int i=0;i<data.length;i++) {
         int temp=(data[i]/(int)(Math.pow(10,counter)))%10;
-        bucket[temp].add(data[i]);
+          bucket[temp+9].add(data[i]);
       }
       int datacount=0;
       for (int i=0;i<bucket.length;i++) {
@@ -42,8 +42,8 @@ public class Radix{
     return max;
   }
 public static void main(String[] args) {
-  int[] x={-2,3,5,6,-17,-198,12,14};
-  System.out.println(findMax(x));
-  //System.out.println(Arrays.toString(x));
+  int[] x={-2,3,5,6,-17,-198,1232,14};
+  radixsort(x);
+  System.out.println(Arrays.toString(x));
 }
 }
