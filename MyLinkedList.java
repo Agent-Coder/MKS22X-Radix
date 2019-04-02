@@ -10,6 +10,7 @@ public class MyLinkedList<E>{
    this.end=null;
  }
  public E removeFront(){
+   //System.out.println("SAD");
    return this.remove(0);
  }
  public void extend(MyLinkedList<E> other){
@@ -17,19 +18,16 @@ public class MyLinkedList<E>{
      start=other.start;
      end=other.end;
      this.size=other.size();
-     other.size=0;
-     other.start=null;
-     other.end=null;
    }
    if(this.size!=0&&other.size!=0){
     this.end.setNext(other.start);
     other.start.setPrev(this.end);
     this.end=other.end;
     this.size+=other.size;
-    other.size=0;
-    other.start=null;
-    other.end=null;
   }
+  other.size=0;
+  other.start=null;
+  other.end=null;
       //in O(1) runtime, move the elements from other onto the end of this
       //The size of other is reduced to 0
       //The size of this is now the combined sizes of both original lists
@@ -150,21 +148,28 @@ public class MyLinkedList<E>{
     }
     Node n=this.getNthNode(index);
     E r=n.getdata();
-    if (index==0){
+    if(this.size==1){
+      //System.out.println("yay");
+      this.clear();
+      //System.out.println("nay");
+    }
+    else if (index==0){
       this.start=n.next();
       this.start.setPrev(null);
+      this.size--;
     }
     else if (index==this.size-1){
       this.end=this.getNthNode(index-1);
       this.end.setNext(null);
+      this.size--;
     }
     else{
       Node x=n.prev();
       Node y=n.next();
       y.setPrev(x);
       x.setNext(y);
+      this.size--;
     }
-    this.size--;
     return r;
   }
   //throw exception and save the value at node we are removing
