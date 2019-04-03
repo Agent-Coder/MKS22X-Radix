@@ -8,25 +8,46 @@ public class Radix{
     MyLinkedList<Integer>[] bucket=new MyLinkedList[19];
     int max=findMax(data);
     int counter=0;
+    int temp;
     for (int i=0;i<bucket.length ;i++ ) {
       bucket[i]=new MyLinkedList<Integer>();
     }
     for (int i=0;i<data.length;i++) {
-      int temp=(data[i]/(int)(Math.pow(10,counter)))%10;
+      temp=(data[i]%10);
         bucket[temp+9].add(data[i]);
     }
     MyLinkedList<Integer> all= new MyLinkedList<Integer>();
     while (counter<max){
+      //System.out.println(bucket[13].size());
       if(counter!=0){
-        ///
-          }
+        for (int i=0;i<bucket.length ;i++ ) {
+          bucket[i]=new MyLinkedList<Integer>();
+        }
+        while (all.size()>0) {
+          int num=all.removeFront();
+          //System.out.println(num);
+          temp=(num/(int)(Math.pow(10,counter)))%10;
+          bucket[temp+9].add(num);
         }
       }
       all= new MyLinkedList<Integer>();
       for (int i=0;i<bucket.length;i++) {
-        all.extend(bucket[i]);
+          //System.out.println(bucket[i].size());
+          if(bucket[i].size()>0){
+              //System.out.println(bucket[i].get(0));
+          }
+          //System.out.println(bucket[i].size());
+          all.extend(bucket[i]);
+          //System.out.println("total"+all.size());
       }
+      //System.out.println(all.size());
+      //System.out.println(all.size());
       counter++;
+    }
+    temp=0;
+    while (all.size()>0) {
+      data[temp]=all.removeFront();
+      temp++;
     }
   }
   public static int findMax(int[] data){
