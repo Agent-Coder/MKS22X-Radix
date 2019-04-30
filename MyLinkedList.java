@@ -10,21 +10,30 @@ public class MyLinkedList<E>{
    this.end=null;
  }
  public E removeFront(){
-   //System.out.println("SAD");
-   return this.remove(0);
+   E r=this.start.getdata();
+   if(this.size==1){
+     //System.out.println("yay");
+     this.clear();
+     //System.out.println("nay");
+   }
+   else{
+     this.start=this.start.next();
+     this.start.setPrev(null);
+     this.size--;
+   }
+   return r;
  }
  public void extend(MyLinkedList<E> other){
-   if(this.size==0){
-     start=other.start;
-     end=other.end;
-     this.size=other.size();
+   if(this.size==0&&other.size!=0){
+     this.start=other.start;
+     this.end=other.end;
    }
-   if(this.size!=0&&other.size!=0){
+   else if(this.size!=0&&other.size!=0){
     this.end.setNext(other.start);
     other.start.setPrev(this.end);
     this.end=other.end;
-    this.size+=other.size;
   }
+  this.size+=other.size;
   other.size=0;
   other.start=null;
   other.end=null;
@@ -148,7 +157,7 @@ public class MyLinkedList<E>{
     }
     Node n=this.getNthNode(index);
     E r=n.getdata();
-    if(this.size==1){
+    if(this.size<=1){
       //System.out.println("yay");
       this.clear();
       //System.out.println("nay");
