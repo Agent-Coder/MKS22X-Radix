@@ -20,9 +20,6 @@ public class Radix{
     while (counter<max){
       //System.out.println(bucket[13].size());
       if(counter!=0){
-        for (int i=0;i<bucket.length ;i++ ) {
-          bucket[i]=new MyLinkedList<Integer>();
-        }
         while (all.size()>0) {
           int num=all.removeFront();
           //System.out.println(num);
@@ -33,9 +30,6 @@ public class Radix{
       all= new MyLinkedList<Integer>();
       for (int i=0;i<bucket.length;i++) {
           //System.out.println(bucket[i].size());
-          if(bucket[i].size()>0){
-              //System.out.println(bucket[i].get(0));
-          }
           //System.out.println(bucket[i].size());
           all.extend(bucket[i]);
           //System.out.println("total"+all.size());
